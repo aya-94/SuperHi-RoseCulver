@@ -11,6 +11,7 @@ const pages= [
 
 const nextTag = document.querySelector('footer img.next');
 const previousTag = document.querySelector('footer img.prev');
+const randomTag = document.querySelector('footer img.random');
 const outputTag = document.querySelector('h2');
 const circleTag = document.querySelector('section div.circle');
 const bodyTag = document.querySelector('body');
@@ -35,6 +36,12 @@ const previous = function () {
     updateSection();
 }
 
+const random = function () {
+    pageNumber = Math.floor(Math.random() * pages.length);
+
+    updateSection();
+}
+
 const updateSection = function () {
     outputTag.innerHTML = pages[pageNumber].copy;
     circleTag.style.backgroundColor = pages[pageNumber].circle;
@@ -47,4 +54,17 @@ nextTag.addEventListener('click', function() {
 
 previousTag.addEventListener('click', function() {
     previous();
+})
+
+randomTag.addEventListener('click', function() {
+    random();
+})
+
+document.addEventListener('keyup', function (e) {
+    if(e.key == 'ArrowRight') {
+        next();
+    }
+    if(e.key == 'ArrowLeft') {
+        previous();
+    }
 })
